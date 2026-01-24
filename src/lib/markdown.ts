@@ -85,8 +85,12 @@ async function fetchRemotePosts(): Promise<Post[]> {
       let fileContents = await contentRes.text();
       
       // Fix MDX compliance: Ensure <img> tags are self-closing
-      // Replaces <img ... > with <img ... />
-      fileContents = fileContents.replace(/<img\s+([^>]*?)(?<!\/)>/gi, '<img $1 />');
+      // Matches <img ... > and converts to <img ... />
+      // Handles attributes, newlines, and ensures we don't double-close
+      fileContents = fileContents.replace(
+        /<img([^>]+?)(?<!\/)>/gi, 
+        (match, attributes) => `<img${attributes} />`
+      );
 
       const { data, content } = matter(fileContents);
       
