@@ -82,7 +82,12 @@ async function fetchRemotePosts(): Promise<Post[]> {
       
       if (!contentRes.ok) return null;
 
-      const fileContents = await contentRes.text();
+      let fileContents = await contentRes.text();
+      
+      // Fix MDX compliance: Ensure <img> tags are self-closing
+      // Replaces <img ... > with <img ... />
+      fileContents = fileContents.replace(/<img\s+([^>]*?)(?<!\/)>/gi, '<img $1 />');
+
       const { data, content } = matter(fileContents);
       
       // Use filename as slug, handling folders (e.g. Day1/note.md -> note)
