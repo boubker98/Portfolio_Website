@@ -1,26 +1,157 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
+@theme {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
 }
 
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    /* Forest Theme - Light Mode (Inverted/Adapted) */
+    --background: hsl(39 58% 95%); /* Very light beige */
+    --foreground: hsl(111 12% 12%); /* Dark Green/Black text */
+
+    --card: hsl(39 58% 98%);
+    --card-foreground: hsl(111 12% 12%);
+    
+    --popover: hsl(39 58% 98%);
+    --popover-foreground: hsl(111 12% 12%);
+
+    --primary: hsl(90 33% 38%); /* Medium Green #628141 */
+    --primary-foreground: hsl(39 58% 90%);
+
+    --secondary: hsl(86 33% 54%); /* Light Green #8BAE66 */
+    --secondary-foreground: hsl(111 12% 12%);
+
+    --muted: hsl(90 20% 90%);
+    --muted-foreground: hsl(111 10% 40%);
+
+    --accent: hsl(86 33% 80%);
+    --accent-foreground: hsl(111 12% 12%);
+
+    --destructive: hsl(0 84.2% 60.2%);
+    --destructive-foreground: hsl(0 0% 98%);
+
+    --border: hsl(90 20% 85%);
+    --input: hsl(90 20% 85%);
+    --ring: hsl(90 33% 38%);
+
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    /* Forest Theme - Dark Mode (Requested Palette) */
+    --background: hsl(0 0% 0%); /* Solid Black #000000 */
+    --foreground: hsl(39 58% 80%); /* #EBD5AB (Beige) */
+
+    --card: hsl(111 12% 12%); /* Same as bg for seamless look, or slightly lighter */
+    --card-foreground: hsl(39 58% 80%);
+    
+    --popover: hsl(111 12% 12%);
+    --popover-foreground: hsl(39 58% 80%);
+
+    --primary: hsl(90 33% 38%); /* #628141 */
+    --primary-foreground: hsl(39 58% 95%);
+
+    --secondary: hsl(86 33% 54%); /* #8BAE66 */
+    --secondary-foreground: hsl(111 12% 12%);
+
+    --muted: hsl(111 10% 20%);
+    --muted-foreground: hsl(86 10% 60%);
+
+    --accent: hsl(111 10% 20%);
+    --accent-foreground: hsl(39 58% 80%);
+
+    --destructive: hsl(0 62.8% 30.6%);
+    --destructive-foreground: hsl(39 58% 95%);
+
+    --border: hsl(111 10% 25%);
+    --input: hsl(111 10% 25%);
+    --ring: hsl(86 33% 54%);
   }
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  @apply bg-background text-foreground antialiased;
+}
+
+/* Custom Table Styles for Digital Garden */
+.prose table {
+  @apply w-full text-sm my-8;
+}
+
+.prose thead {
+  @apply border-b border-border;
+}
+
+.prose thead th {
+  @apply text-left font-bold pb-2 text-foreground;
+}
+
+.prose tbody tr {
+  @apply border-b border-border/50 hover:bg-muted/50 transition-colors;
+}
+
+.prose tbody td {
+  @apply py-2 align-top text-muted-foreground;
+}
+
+/* Fix for white text / dark mode conflict in typography plugin */
+.prose {
+  --tw-prose-body: var(--foreground);
+  --tw-prose-headings: var(--foreground);
+  --tw-prose-lead: var(--muted-foreground);
+  --tw-prose-links: var(--primary);
+  --tw-prose-bold: var(--foreground);
+  --tw-prose-counters: var(--muted-foreground);
+  --tw-prose-bullets: var(--muted-foreground);
+  --tw-prose-hr: var(--border);
+  --tw-prose-quotes: var(--foreground);
+  --tw-prose-quote-borders: var(--border);
+  --tw-prose-captions: var(--muted-foreground);
+  --tw-prose-code: var(--foreground);
+  --tw-prose-pre-code: var(--card-foreground);
+  --tw-prose-pre-bg: var(--card);
+  --tw-prose-th-borders: var(--border);
+  --tw-prose-td-borders: var(--border);
+  
+  /* Invert color overrides for dark mode since we use a custom palette */
+  --tw-prose-invert-body: var(--foreground);
+  --tw-prose-invert-headings: var(--foreground);
+  --tw-prose-invert-lead: var(--muted-foreground);
+  --tw-prose-invert-links: var(--primary);
+  --tw-prose-invert-bold: var(--foreground);
+  --tw-prose-invert-counters: var(--muted-foreground);
+  --tw-prose-invert-bullets: var(--muted-foreground);
+  --tw-prose-invert-hr: var(--border);
+  --tw-prose-invert-quotes: var(--foreground);
+  --tw-prose-invert-quote-borders: var(--border);
+  --tw-prose-invert-captions: var(--muted-foreground);
+  --tw-prose-invert-code: var(--foreground);
+  --tw-prose-invert-pre-code: var(--card-foreground);
+  --tw-prose-invert-pre-bg: var(--card);
+  --tw-prose-invert-th-borders: var(--border);
+  --tw-prose-invert-td-borders: var(--border);
 }
