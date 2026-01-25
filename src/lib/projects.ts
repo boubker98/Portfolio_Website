@@ -1,6 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
+import { preprocessMarkdown } from './markdown';
 
 const projectsDirectory = path.join(process.cwd(), 'content/projects');
 
@@ -27,7 +28,11 @@ export function getAllProjects(): Project[] {
     .map((fileName) => {
       const slug = fileName.replace(/\.md$/, '');
       const fullPath = path.join(projectsDirectory, fileName);
-      const fileContents = fs.readFileSync(fullPath, 'utf8');
+      let fileContents = fs.readFileSync(fullPath, 'utf8');
+      
+      // Fix MDX compliance
+      fileContents = preprocessMarkdown(fileContents);
+
       const { data, content } = matter(fileContents);
 
       return {
@@ -51,7 +56,11 @@ export function getProjectBySlug(slug: string): Project | null {
   const fullPath = path.join(projectsDirectory, `${realSlug}.md`);
   if (!fs.existsSync(fullPath)) return null;
 
-  const fileContents = fs.readFileSync(fullPath, 'utf8');
+  let fileContents = fs.readFileSync(fullPath, 'utf8');
+  
+  // Fix MDX compliance
+  fileContents = preprocessMarkdown(fileContents);
+  
   const { data, content } = matter(fileContents);
 
   return {

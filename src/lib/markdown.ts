@@ -14,6 +14,16 @@ export type Post = {
   backlinks?: { slug: string; title: string }[];
 };
 
+// Helper: Preprocess markdown to ensure MDX compliance
+export function preprocessMarkdown(content: string): string {
+  // Fix MDX compliance: Ensure <img> tags are self-closing
+  // Matches <img ... > and converts to <img ... />
+  return content.replace(
+    /<img([^>]+?)(?<!\/)>/gi, 
+    (match, attributes) => `<img${attributes} />`
+  );
+}
+
 // Helper: Fetch remote posts from GitHub
 async function fetchRemotePosts(): Promise<Post[]> {
   const token = process.env.GITHUB_TOKEN;
@@ -83,14 +93,7 @@ async function fetchRemotePosts(): Promise<Post[]> {
       if (!contentRes.ok) return null;
 
       let fileContents = await contentRes.text();
-      
-      // Fix MDX compliance: Ensure <img> tags are self-closing
-      // Matches <img ... > and converts to <img ... />
-      // Handles attributes, newlines, and ensures we don't double-close
-      fileContents = fileContents.replace(
-        /<img([^>]+?)(?<!\/)>/gi, 
-        (match, attributes) => `<img${attributes} />`
-      );
+      fileContents = preprocessMarkdown(fileContents);
 
       const { data, content } = matter(fileContents);
       
@@ -129,7 +132,11 @@ function getLocalPosts(): Post[] {
         .map((fileName) => {
             const slug = fileName.replace(/\.md$/, '');
             const fullPath = path.join(notesDirectory, fileName);
-            const fileContents = fs.readFileSync(fullPath, 'utf8');
+            let fileContents = fs.readFileSync(fullPath, 'utf8');
+            
+            // Fix MDX compliance for local posts too
+            fileContents = preprocessMarkdown(fileContents);
+            
             const { data, content } = matter(fileContents);
             return {
                 slug,
