@@ -16,12 +16,20 @@ export type Post = {
 
 // Helper: Preprocess markdown to ensure MDX compliance
 export function preprocessMarkdown(content: string): string {
-  // Fix MDX compliance: Ensure <img> tags are self-closing
-  // Matches <img ... > and converts to <img ... />
-  return content.replace(
+  // Fix MDX compliance: Ensure void tags are self-closing
+  // 1. Image tags: <img ... > -> <img ... />
+  let processed = content.replace(
     /<img([^>]+?)(?<!\/)>/gi, 
     (match, attributes) => `<img${attributes} />`
   );
+
+  // 2. Break tags: <br> -> <br />
+  processed = processed.replace(/<br\s*\/?>/gi, '<br />');
+
+  // 3. Horizontal rules: <hr> -> <hr />
+  processed = processed.replace(/<hr\s*\/?>/gi, '<hr />');
+
+  return processed;
 }
 
 // Helper: Fetch remote posts from GitHub
