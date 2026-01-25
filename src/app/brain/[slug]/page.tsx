@@ -1,9 +1,8 @@
 import { getPostBySlug, getAllPosts } from "@/lib/markdown";
-import { MDXRemote } from "next-mdx-remote/rsc";
+import { compileMDX } from "next-mdx-remote/rsc";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { format } from "date-fns";
-import { ArrowLeft } from "lucide-react";
 import remarkGfm from "remark-gfm";
 
 interface PageProps {
@@ -22,6 +21,37 @@ export default async function NotePage({ params }: PageProps) {
   const post = await getPostBySlug(resolvedParams.slug);
 
   if (!post) notFound();
+
+  let content;
+  try {
+    // Manually compile MDX to catch errors
+    const result = await compileMDX({
+        source: post.content.replace(/\[\[(.*?)\]\]/g, (match, slug) => {
+            const title = slug.split('|')[0]; 
+            return `[${title}](/brain/${encodeURIComponent(title)})`;
+        }),
+        options: {
+            mdxOptions: {
+            remarkPlugins: [remarkGfm],
+            },
+        },
+        components: {
+            // Add components here if needed
+        }
+    });
+    content = result.content;
+  } catch (error) {
+      console.error(`Error compiling MDX for ${post.slug}:`, error);
+      content = (
+        <div className="p-4 border border-destructive/50 rounded-lg bg-destructive/10 text-destructive">
+            <h3 className="font-semibold mb-2">Error rendering content</h3>
+            <p className="text-sm opacity-80 mb-4">There was an issue parsing this note's markdown content.</p>
+            <pre className="text-xs overflow-auto max-h-96 whitespace-pre-wrap font-mono bg-background/50 p-2 rounded">
+                {post.content}
+            </pre>
+        </div>
+      );
+  }
 
   return (
     <article className="min-h-screen max-w-3xl mx-auto p-8">
@@ -55,38 +85,7 @@ export default async function NotePage({ params }: PageProps) {
       </header>
 
       <div className="prose dark:prose-invert max-w-none prose-headings:font-semibold prose-a:text-blue-500 hover:prose-a:text-blue-600 transition-colors prose-table:w-full">
-{/* Safe MDX Rendering */}
-        {(() => {
-          try {
-             return (
-               <MDXRemote 
-                source={post.content.replace(/\[\[(.*?)\]\]/g, (match, slug) => {
-                    const title = slug.split('|')[0]; 
-                    return `[${title}](/brain/${encodeURIComponent(title)})`;
-                })} 
-                options={{
-                  mdxOptions: {
-                    remarkPlugins: [remarkGfm],
-                  },
-                }}
-                components={{
-                   // Fallback for failed components if needed
-                }}
-              />
-             )
-          } catch(e) {
-            console.error("MDX Error:", e);
-             return (
-              <div className="p-4 border border-destructive/50 rounded-lg bg-destructive/10 text-destructive">
-                <h3 className="font-semibold mb-2">Error rendering content</h3>
-                <p className="text-sm opacity-80 mb-4">There was an issue parsing this note's markdown content.</p>
-                <pre className="text-xs overflow-auto max-h-96 whitespace-pre-wrap font-mono bg-background/50 p-2 rounded">
-                  {post.content}
-                </pre>
-              </div>
-            )
-          }
-        })()}
+        {content}
       </div>
 
       {post.backlinks && post.backlinks.length > 0 && (
