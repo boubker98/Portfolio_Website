@@ -8,14 +8,17 @@ tags: [Python, Scraping, Data Engineering]
 
 # AOTY Web Scraper
 
-A web scraping pipeline to collect music data from Album of the Year (AOTY).
+**AOTY Web Scraper** is a targeted data collection tool built to extract music reviews and scores from the *Album of the Year* website. It serves as the ingestion layer for downstream music analytics projects.
 
 ## Key Features
 
-- **Automated Collection**: Scrapes album reviews and scores.
-- **Data Pipeline**: Cleans and normalizes data for analysis.
+- **Automated Collection**: Robustly scrapes album reviews, user scores, and critic ratings.
+- **Data Engineering Pipeline**: Implements cleaning and normalization logic to transform raw HTML into structured datasets.
+- **Rate Limiting**: Includes respectful scraping delays to avoid IP bans and server overload.
+- **Error Handling**: Graceful failure management for missing data or collecting partial records.
 
 ## Tech Stack
 
 - **Language**: Python
-- **Libraries**: BeautifulSoup, Requests
+- **Core Libraries**: BeautifulSoup4 (BS4), Requests
+- **Data Handling**: Pandas, JSON

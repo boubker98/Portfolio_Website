@@ -21,7 +21,7 @@ The project is structured as a full-stack application:
 ## Key Features
 
 - **Automated Summarization**: Uses AI to generate natural language summaries of complex data sets.
-- **Data Quality Focus**: specifically designed to handle and interpret data quality metrics.
+- **Data Quality Focus**: Specifically designed to handle and interpret data quality metrics.
 - **Dynamic Insights**: Transforms static numbers into actionable narratives.
 - **Full-Stack Implementation**: Seamless integration between a robust Python backend and a typed frontend interface.
 
