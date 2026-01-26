@@ -26,9 +26,11 @@ export default async function NotePage({ params }: PageProps) {
   try {
     // Manually compile MDX to catch errors
     const result = await compileMDX({
-        source: post.content.replace(/\[\[(.*?)\]\]/g, (match, slug) => {
-            const title = slug.split('|')[0]; 
-            return `[${title}](/brain/${encodeURIComponent(title)})`;
+        source: post.content.replace(/\[\[(.*?)\]\]/g, (match, linkContent) => {
+            const parts = linkContent.split('|');
+            const slug = parts[0];
+            const title = parts[1] || slug;
+            return `[${title}](/brain/${encodeURIComponent(slug)})`;
         }),
         options: {
             mdxOptions: {
