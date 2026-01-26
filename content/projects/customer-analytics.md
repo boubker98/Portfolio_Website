@@ -2,7 +2,6 @@
 title: Customer Purchase Analytics
 date: 2024-03-24
 description: Modular, memory-efficient Python package for processing 10M+ rows in chunks with reproducible metrics and segmentation.
-image: /images/projects/customer-analytics.png
 repoUrl: https://github.com/boubker98/customer-analytics
 tags: [Python, Data Engineering, Analytics]
 ---

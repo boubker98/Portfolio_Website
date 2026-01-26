@@ -2,7 +2,6 @@
 title: pokeops
 date: 2024-03-24
 description: Refactored into a testable Python package with modular structure, CI integration, and packaging for distribution.
-image: /images/projects/pokeops.png
 repoUrl: https://github.com/boubker98/pokeops
 tags: [Python, DevOps, CI/CD]
 ---

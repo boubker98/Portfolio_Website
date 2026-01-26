@@ -2,7 +2,6 @@
 title: Intelligent Reporting
 date: 2024-03-24
 description: Automated reporting and intelligent analytics framework that leverages AI-driven summarization to transform raw operational and data quality metrics into dynamic, human-readable insights.
-image: /images/projects/intelligent-reporting.png
 repoUrl: https://github.com/MergeConflictLab/intelligent-reporting
 tags: [Python, TypeScript, AI, Automation, Flask]
 ---
