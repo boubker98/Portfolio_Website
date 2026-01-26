@@ -29,67 +29,42 @@
 
 @layer base {
   :root {
-    /* Forest Theme - Light Mode (Inverted/Adapted) */
-    --background: hsl(39 58% 95%); /* Very light beige */
-    --foreground: hsl(111 12% 12%); /* Dark Green/Black text */
+    /* Forest Theme - Forced Dark Mode */
+    --background: hsl(120 10% 5%); /* Very dark forest green/black */
+    --foreground: hsl(100 20% 90%); /* Pale sage green */
 
-    --card: hsl(39 58% 98%);
-    --card-foreground: hsl(111 12% 12%);
+    --card: hsl(120 8% 8%); 
+    --card-foreground: hsl(100 20% 90%);
     
-    --popover: hsl(39 58% 98%);
-    --popover-foreground: hsl(111 12% 12%);
+    --popover: hsl(120 8% 8%);
+    --popover-foreground: hsl(100 20% 90%);
 
-    --primary: hsl(90 33% 38%); /* Medium Green #628141 */
-    --primary-foreground: hsl(39 58% 90%);
+    --primary: hsl(100 40% 45%); /* Distinct Green */
+    --primary-foreground: hsl(120 10% 5%);
 
-    --secondary: hsl(86 33% 54%); /* Light Green #8BAE66 */
-    --secondary-foreground: hsl(111 12% 12%);
+    --secondary: hsl(100 15% 20%); /* Dark Green bg */
+    --secondary-foreground: hsl(100 20% 90%);
 
-    --muted: hsl(90 20% 90%);
-    --muted-foreground: hsl(111 10% 40%);
+    --muted: hsl(120 8% 15%);
+    --muted-foreground: hsl(100 10% 60%);
 
-    --accent: hsl(86 33% 80%);
-    --accent-foreground: hsl(111 12% 12%);
+    --accent: hsl(120 8% 15%);
+    --accent-foreground: hsl(100 20% 90%);
 
-    --destructive: hsl(0 84.2% 60.2%);
-    --destructive-foreground: hsl(0 0% 98%);
+    --destructive: hsl(0 62.8% 30.6%);
+    --destructive-foreground: hsl(100 20% 90%);
 
-    --border: hsl(90 20% 85%);
-    --input: hsl(90 20% 85%);
-    --ring: hsl(90 33% 38%);
+    --border: hsl(120 8% 20%);
+    --input: hsl(120 8% 20%);
+    --ring: hsl(100 40% 45%);
 
     --radius: 0.5rem;
   }
+}
 
-  .dark {
-    /* Forest Theme - Dark Mode (Requested Palette) */
-    --background: hsl(0 0% 0%); /* Solid Black #000000 */
-    --foreground: hsl(39 58% 80%); /* #EBD5AB (Beige) */
-
-    --card: hsl(111 12% 12%); /* Same as bg for seamless look, or slightly lighter */
-    --card-foreground: hsl(39 58% 80%);
-    
-    --popover: hsl(111 12% 12%);
-    --popover-foreground: hsl(39 58% 80%);
-
-    --primary: hsl(90 33% 38%); /* #628141 */
-    --primary-foreground: hsl(39 58% 95%);
-
-    --secondary: hsl(86 33% 54%); /* #8BAE66 */
-    --secondary-foreground: hsl(111 12% 12%);
-
-    --muted: hsl(111 10% 20%);
-    --muted-foreground: hsl(86 10% 60%);
-
-    --accent: hsl(111 10% 20%);
-    --accent-foreground: hsl(39 58% 80%);
-
-    --destructive: hsl(0 62.8% 30.6%);
-    --destructive-foreground: hsl(39 58% 95%);
-
-    --border: hsl(111 10% 25%);
-    --input: hsl(111 10% 25%);
-    --ring: hsl(86 33% 54%);
+@layer components {
+  .tag {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-secondary text-secondary-foreground transition-colors hover:bg-secondary/80;
   }
 }
 
@@ -137,6 +112,11 @@ body {
   --tw-prose-th-borders: var(--border);
   --tw-prose-td-borders: var(--border);
   
+  /* Custom Link Styling */
+  .prose a {
+    @apply no-underline border-b border-primary/30 transition-colors hover:border-primary hover:bg-primary/10 rounded-sm px-0.5;
+  }
+
   /* Invert color overrides for dark mode since we use a custom palette */
   --tw-prose-invert-body: var(--foreground);
   --tw-prose-invert-headings: var(--foreground);

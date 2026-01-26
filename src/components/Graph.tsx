@@ -61,8 +61,8 @@ export default function Graph({ data }: { data: GraphData }) {
         height={dimensions.height}
         graphData={data}
         nodeLabel="name"
-        nodeColor={() => isDark ? '#60a5fa' : '#3b82f6'}
-        linkColor={() => isDark ? '#4b5563' : '#e5e7eb'}
+        nodeColor={() => '#7DAF58'} // Primary Green
+        linkColor={() => '#4A5E42'} // Muted Forest Green
         backgroundColor={isDark ? '#00000000' : '#ffffff00'} // Transparent background to blend with theme
         onNodeClick={handleNodeClick}
         nodeRelSize={6}

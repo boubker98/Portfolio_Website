@@ -76,7 +76,7 @@ export default async function NotePage({ params }: PageProps) {
               {post.tags.map((tag) => (
                 <span
                   key={tag}
-                  className="px-2 py-1 bg-secondary rounded-md text-xs font-medium"
+                  className="tag"
                 >
                   #{tag}
                 </span>

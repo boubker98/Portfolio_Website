@@ -37,8 +37,15 @@ export default async function ProjectPage({ params }: PageProps) {
         <h1 className="text-4xl md:text-5xl font-bold font-mono">{project.title}</h1>
         <p className="text-xl text-muted-foreground">{project.description}</p>
         
-        <div className="flex flex-wrap items-center gap-4 text-sm">
-          {project.demoUrl && (
+        <div className="flex flex-wrap items-center gap-4 text-sm mt-4">
+          {project.tags && project.tags.map((tag) => (
+             <span key={tag} className="tag">
+                {tag}
+             </span>
+          ))}
+          
+          <div className="flex items-center gap-4 ml-auto">
+             {project.demoUrl && (
             <a
               href={project.demoUrl}
               target="_blank"
@@ -63,6 +70,7 @@ export default async function ProjectPage({ params }: PageProps) {
             {format(new Date(project.date), "MMMM yyyy")}
           </time>
         </div>
+      </div>
 
         {project.image && (
           <div className="w-full aspect-video rounded-xl overflow-hidden border border-border bg-muted/50 mt-8">

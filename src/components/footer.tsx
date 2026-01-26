@@ -56,7 +56,8 @@ export function Footer() {
             <p>&copy; {currentYear} Boubker Ennajy. All rights reserved.</p>
             <p>
                 Built with <a href="https://nextjs.org" target="_blank" className="hover:text-foreground underline underline-offset-2">Next.js</a> 
-                & <a href="https://tailwindcss.com" target="_blank" className="hover:text-foreground underline underline-offset-2">Tailwind</a>.
+                <span> & </span> <a href="https://tailwindcss.com" target="_blank" className="hover:text-foreground underline underline-offset-2">Tailwind</a>.
+
             </p>
         </div>
       </div>
