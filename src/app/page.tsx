@@ -16,7 +16,7 @@ export default function Home() {
       <header className="mb-12 animate-in fade-in slide-in-from-bottom-4 duration-500">
         <div className="mb-4">
             <h1 className="text-3xl font-bold tracking-tight text-foreground flex items-center gap-2">
-            Boubker Ennajy <span className="animate-pulse text-primary">_</span>
+            Boubker Ennajy <span className="animate-blink text-primary">_</span>
             </h1>
             <p className="text-xl text-muted-foreground">
             Data Engineer

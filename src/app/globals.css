@@ -81,6 +81,15 @@
   .tag {
     @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-accent/50 text-foreground border border-border transition-colors hover:bg-primary/20 hover:text-primary hover:border-primary;
   }
+  
+  .animate-blink {
+    animation: blink 1s step-end infinite;
+  }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
 }
 
 /* Typography Plugin Overrides - Deep Canopy */
