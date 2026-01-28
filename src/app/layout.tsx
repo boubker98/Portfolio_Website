@@ -26,8 +26,8 @@ export default async function RootLayout({
   const navTree = await getNavigationTree();
 
   return (
-    <html lang="en" className="dark"> 
-      <body className={cn(jetbrainsMono.variable, "font-mono bg-background text-foreground antialiased min-h-screen")}>
+    <html lang="en" className={cn("dark", jetbrainsMono.variable)}>
+      <body className="font-mono bg-background text-foreground antialiased min-h-screen">
         <Sidebar navTree={navTree} />
         
         {/* Main Content Area - offset for sidebar on desktop */}
