@@ -1,0 +1,16 @@
+@theme {
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+}
+
+@layer base {
+  :root {
+    /* Deep Data Theme - Forced Update */
+    --primary: hsl(142 70% 50%); /* Terminal Green */
+    --primary-foreground: hsl(150 25% 5%);
+    --accent: hsl(142 80% 40%); 
+    --accent-foreground: hsl(150 25% 5%);
+  }
+}

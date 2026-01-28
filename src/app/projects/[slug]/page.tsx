@@ -5,6 +5,7 @@ import Link from "next/link";
 import { format } from "date-fns";
 import { ArrowLeft, ArrowUpRight, Github } from "lucide-react";
 import remarkGfm from "remark-gfm";
+import { Tag } from "@/components/ui/tag";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -39,9 +40,9 @@ export default async function ProjectPage({ params }: PageProps) {
         
         <div className="flex flex-wrap items-center gap-4 text-sm mt-4">
           {project.tags && project.tags.map((tag) => (
-             <span key={tag} className="tag">
+             <Tag key={tag} variant="secondary">
                 {tag}
-             </span>
+             </Tag>
           ))}
           
           <div className="flex items-center gap-4 ml-auto">
@@ -79,7 +80,7 @@ export default async function ProjectPage({ params }: PageProps) {
         )}
       </header>
 
-      <div className="prose dark:prose-invert max-w-none prose-lg prose-headings:font-mono prose-a:text-blue-500 hover:prose-a:text-blue-600 transition-colors">
+      <div className="prose dark:prose-invert max-w-none prose-lg prose-headings:font-mono prose-a:text-primary hover:prose-a:text-primary/80 transition-colors">
         <MDXRemote 
           source={project.content} 
           options={{

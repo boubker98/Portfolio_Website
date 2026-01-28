@@ -2,136 +2,103 @@
 @plugin "@tailwindcss/typography";
 
 @theme {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-card: var(--card);
-  --color-card-foreground: var(--card-foreground);
-  --color-popover: var(--popover);
-  --color-popover-foreground: var(--popover-foreground);
-  --color-primary: var(--primary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-secondary: var(--secondary);
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-muted: var(--muted);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-accent: var(--accent);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-destructive: var(--destructive);
-  --color-destructive-foreground: var(--destructive-foreground);
-  --color-border: var(--border);
-  --color-input: var(--input);
-  --color-ring: var(--ring);
+  /* Primitive Tokens */
+  --color-void: #000000;
+  --color-main-forest: #254525;
+  --color-accent-moss: #366336;
+  --color-text-e6: #e6e6e6;
+  --color-lime: #99e099;
 
-  --radius-lg: var(--radius);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-sm: calc(var(--radius) - 4px);
+  /* Semantic Mapping */
+  --color-background: var(--color-void);
+  --color-foreground: var(--color-text-e6);
+  
+  --color-card: var(--color-main-forest);
+  --color-card-foreground: var(--color-text-e6);
+  
+  --color-popover: var(--color-main-forest);
+  --color-popover-foreground: var(--color-text-e6);
+  
+  --color-primary: var(--color-lime);
+  --color-primary-foreground: var(--color-void);
+  
+  --color-secondary: var(--color-accent-moss);
+  --color-secondary-foreground: var(--color-text-e6);
+  
+  --color-muted: var(--color-main-forest);
+  --color-muted-foreground: #a3b8a3; 
+  
+  --color-accent: var(--color-accent-moss);
+  --color-accent-foreground: var(--color-text-e6);
+  
+  --color-destructive: hsl(0 62.8% 30.6%);
+  --color-destructive-foreground: hsl(210 20% 90%);
+  
+  --color-border: var(--color-accent-moss);
+  --color-input: var(--color-accent-moss);
+  --color-ring: var(--color-lime);
+
+  --radius-lg: 0.5rem;
+  --radius-md: calc(0.5rem - 2px);
+  --radius-sm: calc(0.5rem - 4px);
+}
+
+/* Custom properties that aren't theme colors */
+:root {
+  --glow-forest: rgba(37, 69, 37, 0.6);
 }
 
 @layer base {
-  :root {
-    /* Forest Theme - Forced Dark Mode */
-    --background: hsl(120 10% 5%); /* Very dark forest green/black */
-    --foreground: hsl(100 20% 90%); /* Pale sage green */
-
-    --card: hsl(120 8% 8%); 
-    --card-foreground: hsl(100 20% 90%);
-    
-    --popover: hsl(120 8% 8%);
-    --popover-foreground: hsl(100 20% 90%);
-
-    --primary: hsl(100 40% 45%); /* Distinct Green */
-    --primary-foreground: hsl(120 10% 5%);
-
-    --secondary: hsl(100 15% 20%); /* Dark Green bg */
-    --secondary-foreground: hsl(100 20% 90%);
-
-    --muted: hsl(120 8% 15%);
-    --muted-foreground: hsl(100 10% 60%);
-
-    --accent: hsl(120 8% 15%);
-    --accent-foreground: hsl(100 20% 90%);
-
-    --destructive: hsl(0 62.8% 30.6%);
-    --destructive-foreground: hsl(100 20% 90%);
-
-    --border: hsl(120 8% 20%);
-    --input: hsl(120 8% 20%);
-    --ring: hsl(100 40% 45%);
-
-    --radius: 0.5rem;
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+  }
+  /* Typography defaults */
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bold;
   }
 }
 
 @layer components {
-  .tag {
-    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-secondary text-secondary-foreground transition-colors hover:bg-secondary/80;
+  /* Antigravity Component Style */
+  .antigravity {
+    @apply bg-card border border-border transition-all duration-300;
+    box-shadow: 0 8px 32px -8px var(--glow-forest);
   }
-}
 
-body {
-  @apply bg-background text-foreground antialiased;
-}
-
-/* Custom Table Styles for Digital Garden */
-.prose table {
-  @apply w-full text-sm my-8;
-}
-
-.prose thead {
-  @apply border-b border-border;
-}
-
-.prose thead th {
-  @apply text-left font-bold pb-2 text-foreground;
-}
-
-.prose tbody tr {
-  @apply border-b border-border/50 hover:bg-muted/50 transition-colors;
-}
-
-.prose tbody td {
-  @apply py-2 align-top text-muted-foreground;
-}
-
-/* Fix for white text / dark mode conflict in typography plugin */
-.prose {
-  --tw-prose-body: var(--foreground);
-  --tw-prose-headings: var(--foreground);
-  --tw-prose-lead: var(--muted-foreground);
-  --tw-prose-links: var(--primary);
-  --tw-prose-bold: var(--foreground);
-  --tw-prose-counters: var(--muted-foreground);
-  --tw-prose-bullets: var(--muted-foreground);
-  --tw-prose-hr: var(--border);
-  --tw-prose-quotes: var(--foreground);
-  --tw-prose-quote-borders: var(--border);
-  --tw-prose-captions: var(--muted-foreground);
-  --tw-prose-code: var(--foreground);
-  --tw-prose-pre-code: var(--card-foreground);
-  --tw-prose-pre-bg: var(--card);
-  --tw-prose-th-borders: var(--border);
-  --tw-prose-td-borders: var(--border);
+  .antigravity:hover {
+    @apply border-primary;
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px -4px var(--glow-forest), 0 0 10px rgba(153, 224, 153, 0.1);
+  }
   
-  /* Custom Link Styling */
-  .prose a {
-    @apply no-underline border-b border-primary/30 transition-colors hover:border-primary hover:bg-primary/10 rounded-sm px-0.5;
+  .tag {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-accent/50 text-foreground border border-border transition-colors hover:bg-primary/20 hover:text-primary hover:border-primary;
   }
+}
 
-  /* Invert color overrides for dark mode since we use a custom palette */
-  --tw-prose-invert-body: var(--foreground);
-  --tw-prose-invert-headings: var(--foreground);
-  --tw-prose-invert-lead: var(--muted-foreground);
-  --tw-prose-invert-links: var(--primary);
-  --tw-prose-invert-bold: var(--foreground);
-  --tw-prose-invert-counters: var(--muted-foreground);
-  --tw-prose-invert-bullets: var(--muted-foreground);
-  --tw-prose-invert-hr: var(--border);
-  --tw-prose-invert-quotes: var(--foreground);
-  --tw-prose-invert-quote-borders: var(--border);
-  --tw-prose-invert-captions: var(--muted-foreground);
-  --tw-prose-invert-code: var(--foreground);
-  --tw-prose-invert-pre-code: var(--card-foreground);
-  --tw-prose-invert-pre-bg: var(--card);
-  --tw-prose-invert-th-borders: var(--border);
-  --tw-prose-invert-td-borders: var(--border);
+/* Typography Plugin Overrides */
+.prose {
+    --tw-prose-body: var(--color-text-e6);
+    --tw-prose-headings: var(--color-text-e6);
+    --tw-prose-lead: var(--color-muted-foreground);
+    --tw-prose-links: var(--color-lime);
+    --tw-prose-bold: var(--color-text-e6);
+    --tw-prose-counters: var(--color-muted-foreground);
+    --tw-prose-bullets: var(--color-muted-foreground);
+    --tw-prose-hr: var(--color-border);
+    --tw-prose-quotes: var(--color-text-e6);
+    --tw-prose-quote-borders: var(--color-border);
+    --tw-prose-captions: var(--color-muted-foreground);
+    --tw-prose-code: var(--color-lime);
+    --tw-prose-pre-code: var(--color-lime);
+    --tw-prose-pre-bg: var(--color-card);
+    --tw-prose-th-borders: var(--color-border);
+    --tw-prose-td-borders: var(--color-border);
+}
+
+.prose a {
+    @apply no-underline border-b border-primary/30 text-primary transition-colors hover:border-primary hover:bg-primary/10 rounded-sm px-0.5;
 }

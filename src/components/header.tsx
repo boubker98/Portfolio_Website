@@ -3,38 +3,50 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
+import Image from "next/image";
 
 const items = [
-  { label: "Home", href: "/" },
-  { label: "Brain", href: "/brain" },
-  { label: "Projects", href: "/projects" },
+  { href: "/", label: "Home" },
+  { href: "/projects", label: "Projects" },
+  { href: "/brain", label: "Brain" },
 ];
 
 export function Header() {
   const pathname = usePathname();
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container flex h-14 max-w-screen-2xl items-center justify-between px-8 md:px-12 lg:px-24">
-        <div className="flex items-center gap-8">
-          <Link href="/" className="flex items-center space-x-2 font-bold font-mono">
-            <span>Boubker</span>
-          </Link>
-          <nav className="flex items-center gap-6 text-sm font-medium">
-            {items.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className={cn(
-                  "transition-colors hover:text-foreground/80",
-                  pathname === item.href ? "text-foreground" : "text-foreground/60"
-                )}
-              >
-                {item.label}
-              </Link>
-            ))}
-          </nav>
-        </div>
+    <header className="sticky top-0 z-50 w-full border-b border-border/50 bg-background/80 backdrop-blur-md">
+      <div className="container flex h-14 max-w-screen-xl items-center justify-between px-6 md:px-8">
+        
+        {/* Logo */}
+        <Link href="/" className="flex items-center gap-2 transition-opacity hover:opacity-80">
+          <div className="relative w-7 h-7 overflow-hidden rounded-sm">
+            <Image 
+              src="/images/logo.png" 
+              alt="Boubker Ennajy" 
+              fill 
+              className="object-cover"
+              priority
+            />
+          </div>
+        </Link>
+
+        {/* Navigation */}
+        <nav className="flex items-center gap-6 text-sm font-medium">
+          {items.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              className={cn(
+                "transition-colors hover:text-primary",
+                pathname === item.href ? "text-primary" : "text-muted-foreground"
+              )}
+            >
+              {item.label}
+            </Link>
+          ))}
+        </nav>
+        
       </div>
     </header>
   );

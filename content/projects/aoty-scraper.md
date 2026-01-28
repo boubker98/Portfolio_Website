@@ -1,24 +1,21 @@
 ---
-title: AOTY Web Scraper
-date: 2024-03-24
-description: Album of the Year web scraper and data pipeline.
-repoUrl: https://github.com/boubker98/AOTY-Web-Scraper
-tags: [Python, Scraping, Data Engineering]
+title: Album Data Scraper
+date: "2025-01-20"
+description: Automated scraping pipeline for music data using Selenium, Prefect, and DuckDB.
+image: "/images/aoty-scraper.png"
+tags: ["Python", "Selenium", "DuckDB", "Prefect", "Click"]
+repoUrl: "https://github.com/boubker98/aoty-scraper"
 ---
 
-# AOTY Web Scraper
+## Project Overview
 
-**AOTY Web Scraper** is a targeted data collection tool built to extract music reviews and scores from the *Album of the Year* website. It serves as the ingestion layer for downstream music analytics projects.
+An automated data collection pipeline designed to aggregate album records and user reviews from multiple web sources, facilitating music trend analysis.
 
 ## Key Features
 
-- **Automated Collection**: Robustly scrapes album reviews, user scores, and critic ratings.
-- **Data Engineering Pipeline**: Implements cleaning and normalization logic to transform raw HTML into structured datasets.
-- **Rate Limiting**: Includes respectful scraping delays to avoid IP bans and server overload.
-- **Error Handling**: Graceful failure management for missing data or collecting partial records.
+*   **Robust Scraping**: Developed a pipeline using **Selenium** and **BeautifulSoup** to collect thousands of album records. Implemented retry logic, modular extractors, and failure handling to increase scrape success rate and stability.
+*   **Orchestration**: Orchestrated scraping, parsing, and persistence tasks with **Prefect**, ensuring reliable execution and observability.
+*   **High-Performance Storage**: Stored results in **DuckDB**, enabling fast analytical queries on the collected structured data.
+*   **CLI Interface**: Exposed the pipeline via a Command Line Interface (CLI) using **Click** to enable repeatable runs and parameterized data collection.
 
-## Tech Stack
-
-- **Language**: Python
-- **Core Libraries**: BeautifulSoup4 (BS4), Requests
-- **Data Handling**: Pandas, JSON
+This tool transforms unstructured web data into a structured dataset ready for analysis.

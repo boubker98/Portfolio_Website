@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { format } from "date-fns";
 import remarkGfm from "remark-gfm";
+import { Tag } from "@/components/ui/tag";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -74,19 +75,16 @@ export default async function NotePage({ params }: PageProps) {
           {post.tags && post.tags.length > 0 && (
             <div className="flex gap-2">
               {post.tags.map((tag) => (
-                <span
-                  key={tag}
-                  className="tag"
-                >
+                <Tag key={tag} variant="secondary">
                   #{tag}
-                </span>
+                </Tag>
               ))}
             </div>
           )}
         </div>
       </header>
 
-      <div className="prose dark:prose-invert max-w-none prose-headings:font-semibold prose-a:text-blue-500 hover:prose-a:text-blue-600 transition-colors prose-table:w-full">
+      <div className="prose dark:prose-invert max-w-none prose-headings:font-semibold prose-a:text-primary hover:prose-a:text-primary/80 transition-colors prose-table:w-full">
         {content}
       </div>
 
@@ -98,7 +96,7 @@ export default async function NotePage({ params }: PageProps) {
               <li key={backlink.slug}>
                 <Link 
                   href={`/brain/${backlink.slug}`}
-                  className="text-blue-500 hover:text-blue-600 hover:underline transition-colors"
+                  className="text-primary hover:text-primary/80 hover:underline transition-colors"
                 >
                   {backlink.title}
                 </Link>

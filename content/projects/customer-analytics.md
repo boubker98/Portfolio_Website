@@ -1,28 +1,22 @@
 ---
-title: Customer Purchase Analytics
-date: 2024-03-24
-description: Modular, memory-efficient Python package for processing 10M+ rows in chunks with reproducible metrics and segmentation.
-repoUrl: https://github.com/boubker98/customer-analytics
-tags: [Python, Data Engineering, Analytics]
+title: Customer Analytics Pipeline
+date: "2024-06-15"
+description: Built a chunked processing pipeline for 10M+ records with schema validation and robust error handling.
+image: "/images/customer-analytics.png"
+tags: ["Python", "Pandas", "Pandera", "Pytest", "Data Quality"]
+demoUrl: ""
+repoUrl: "https://github.com/boubker98/customer-analytics"
 ---
 
-# Customer Purchase Analytics
+## Project Overview
 
-**Scalable Customer Purchase Analytics Platform** is a modular, memory-efficient Python package designed to process large datasets (10M+ rows) in chunks.
+High-performance data pipeline designed to process over 10 million purchase records with strict memory constraints and rigorous data quality checks.
 
-## High-Performance Data Processing
+## Key Implementations
 
-This project solves the challenge of analyzing datasets that exceed available RAM by implementing a chunk-based processing strategy. It ensures that critical business metrics can be computed reliably without infrastructure scaling.
+*   **Optimized Processing**: Built a chunked data processing pipeline to analyze 10M+ purchase records with bounded memory usage, ensuring stability on constrained resources.
+*   **Schema Validation**: Implemented schema validation and business rules using **Pandera**, systematically catching missing, malformed, and inconsistent records before aggregation.
+*   **Data Normalization**: Performed country normalization (using PyCountry), cleaning, and complex aggregations to produce accurate customer-level and regional metrics.
+*   **Robustness**: Added comprehensive unit tests and structured logging, ensuring deterministic results and enabling safe refactoring as data volume scales.
 
-## Key Features
-
-- **Memory Efficiency**: Processes data in configurable chunks to handle datasets significantly larger than system memory.
-- **Reproducibility**: Metrics and segmentation logic are versioned and testable, ensuring consistent results across runs.
-- **Modular Design**: Structured as a reusable Python package with clear separation of concerns.
-- **Robust Segmentation**: Implements detailed customer segmentation logic based on purchasing behavior.
-
-## Tech Stack
-
-- **Language**: Python
-- **Core Libraries**: Pandas, Numpy
-- **Data Engineering**: Chunking strategies, Vectorized operations
+This project demonstrates a focus on production-grade data engineering practices, emphasizing reliability, testability, and efficiency.

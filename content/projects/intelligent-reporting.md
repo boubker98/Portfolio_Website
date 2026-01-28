@@ -1,33 +1,22 @@
 ---
-title: Intelligent Reporting
-date: 2024-03-24
-description: Automated reporting and intelligent analytics framework that leverages AI-driven summarization to transform raw operational and data quality metrics into dynamic, human-readable insights.
-repoUrl: https://github.com/MergeConflictLab/intelligent-reporting
-tags: [Python, TypeScript, AI, Automation, Flask]
+title: Intelligent Reporting System
+date: "2025-10-01"
+description: Architected a multi-agent EDA system to automate analysis and reporting using Python, LangChain, and Azure AI.
+image: "/images/intelligent-reporting.png"
+tags: ["Python", "LangChain", "Azure AI", "Docker", "Polars"]
+demoUrl: ""
+repoUrl: "https://github.com/boubker98/intelligent-reporting"
 ---
 
-# Intelligent Reporting
+## Project Overview
 
-**Intelligent Reporting** is an automated analytics framework designed to bridge the gap between raw data metrics and human understanding. It leverages AI-driven summarization to transform operational and data quality metrics into dynamic, readable insights.
-
-## Architecture
-
-The project is structured as a full-stack application:
-
-- **Backend**: Python-based API utilizing **Flask** (`app.py`) for handling data processing and summarization requests.
-- **Frontend**: Built with **TypeScript** to provide an interactive dashboard for viewing reports.
-- **AI Engine**: Integrates AI models to analyze data quality metrics and generate natural language summaries.
+Architected a multi-agent Exploratory Data Analysis (EDA) system using the Factory pattern to automate metadata extraction, analysis planning, and insight generation from tabular datasets. This system leverages a team of specialized agents to perform end-to-end data analysis autonomously.
 
 ## Key Features
 
-- **Automated Summarization**: Uses AI to generate natural language summaries of complex data sets.
-- **Data Quality Focus**: Specifically designed to handle and interpret data quality metrics.
-- **Dynamic Insights**: Transforms static numbers into actionable narratives.
-- **Full-Stack Implementation**: Seamless integration between a robust Python backend and a typed frontend interface.
+*   **Multi-Agent Architecture**: Orchestrated 4 specialized agents (Metadata, Planner, Analyst, Reviewer) using LangGraph to handle complex analytical tasks.
+*   **Hybrid Inference**: Built a pipeline with Azure AI Foundry for cloud-based reasoning and local GGUF quantized models (LlamaCPP) for cost-effective, offline-capable inference with automatic fallback.
+*   **Sandboxed Execution**: Containerized the system on a Linux VM using Docker, including a secure sandboxed Python environment for executing agent-generated code and rendering charts safely.
+*   **Performance**: Utilized Polars for high-performance data manipulation, enabling rapid processing of large datasets.
 
-## Tech Stack
-
-- **Languages**: Python (83%), TypeScript (14%)
-- **Backend Framework**: Flask
-- **Frontend**: TypeScript
-- **Scripting**: Automation scripts for report generation
+The system transforms raw data into comprehensive reports, complete with visualizations and actionable insights, significantly reducing the time required for initial data assessment.
