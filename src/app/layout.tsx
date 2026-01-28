@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Outfit } from "next/font/google"; 
+import { JetBrains_Mono } from "next/font/google"; 
 import "./globals.css";
 import "./theme.css";
 import { cn } from "@/lib/utils";
@@ -7,8 +7,11 @@ import { Sidebar } from "@/components/sidebar";
 import { Footer } from "@/components/footer";
 import { getNavigationTree } from "@/lib/navigation";
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
-const outfit = Outfit({ subsets: ["latin"], variable: "--font-outfit" });
+const jetbrainsMono = JetBrains_Mono({ 
+  subsets: ["latin"], 
+  variable: "--font-jetbrains",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: "Portfolio | Digital Garden",
@@ -24,7 +27,7 @@ export default async function RootLayout({
 
   return (
     <html lang="en" className="dark"> 
-      <body className={cn(inter.variable, outfit.variable, "font-sans bg-background text-foreground antialiased min-h-screen")}>
+      <body className={cn(jetbrainsMono.variable, "font-mono bg-background text-foreground antialiased min-h-screen")}>
         <Sidebar navTree={navTree} />
         
         {/* Main Content Area - offset for sidebar on desktop */}
