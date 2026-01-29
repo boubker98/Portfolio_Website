@@ -16,7 +16,7 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/50 bg-background/80 backdrop-blur-md">
-      <div className="container flex h-14 max-w-screen-xl items-center justify-between px-6 md:px-8">
+      <div className="container flex h-14 max-w-7xl items-center justify-between px-6 md:px-8">
         
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2 transition-opacity hover:opacity-80">
