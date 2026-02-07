@@ -1,0 +1,54 @@
+[
+  {
+    "company": "Arkx Academy (Jobintech)",
+    "period": "Jul 2025 – Dec 2025",
+    "role": "Data Engineer and Data Analyst Intern",
+    "type": "job",
+    "description": [
+      "Designed and deployed data workflows that streamlined ingestion and transformation, ensuring consistent, timely delivery of analytics insights while coordinating with team members.",
+      "Applied critical thinking to identify and resolve data quality issues, improving trust in the analytics outputs."
+    ]
+  },
+  {
+    "company": "Boundless Rider",
+    "period": "Nov 2023 – Oct 2024",
+    "role": "Software Developer",
+    "type": "job",
+    "description": [
+      "Developed and deployed mobile features in React Native, improving user engagement while collaborating closely with cross-functional teams.",
+      "Built and optimized backend APIs, reducing response time by 20% through analytical problem-solving and attention to detail.",
+      "Supported production systems with 99% uptime, handling bug fixes and hotpatches under release deadlines."
+    ]
+  },
+  {
+    "company": "Inclusive Studios",
+    "period": "Sep 2022 – Sep 2023",
+    "role": "Software Developer",
+    "type": "job",
+    "description": [
+      "Architected and deployed mobile features in React Native and Next.js cross-platform applications",
+      "Engineered a scalable serverless backend using AWS Lambda and DynamoDB, optimizing data flow and reducing latency"
+    ]
+  },
+  {
+    "company": "Safran Electrical & Power",
+    "period": "Apr – Oct 2021",
+    "role": "Embedded Systems Engineer Intern",
+    "type": "internship",
+    "description": "Developed a computer vision–based load handling system for the H160 station, automating a previously manual process. Integrated AI-based object detection with embedded hardware, reducing operator intervention and improving handling accuracy."
+  },
+  {
+    "company": "AutoHall",
+    "period": "Apr – Jun 2019",
+    "role": "Automotive Engineer Intern",
+    "type": "internship",
+    "description": "Conducted technical study of particle filters and supported vehicle diagnostics and maintenance."
+  },
+  {
+    "company": "ONCF",
+    "period": "Apr – Jun 2018",
+    "role": "Electrical Engineer Intern",
+    "type": "internship",
+    "description": "Designed an alarm system against motor overheating in E-1100 locomotives and supported diagnostics and maintenance of electric motors."
+  }
+]

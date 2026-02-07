@@ -5,9 +5,15 @@ import { Mail, Linkedin, Github } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 
+import experienceData from "@/data/experience.json";
+
 export default function Home() {
   const allProjects = getAllProjects();
   const featuredProjects = allProjects.slice(0, 4);
+
+  // Separate jobs and internships based on the structure observed in the original file
+  const jobs = experienceData.filter(item => item.type === "job");
+  const internships = experienceData.filter(item => item.type === "internship");
 
   return (
     <main className="min-h-screen p-8 md:p-12 max-w-3xl mx-auto font-sans">
@@ -69,73 +75,55 @@ export default function Home() {
         </h2>
         
         <div className="space-y-8">
-            {/* Arkx Academy (New) */}
-            <div className="group hover:bg-muted/30 p-4 -mx-4 rounded-lg transition-colors duration-200">
-              <div className="flex justify-between items-baseline mb-2">
-                <h3 className="font-semibold text-foreground text-lg group-hover:text-primary transition-colors">Arkx Academy (Jobintech)</h3>
-                <span className="font-mono text-sm text-muted-foreground">Jul 2025 – Dec 2025</span>
+            {/* Jobs */}
+            {jobs.map((job, index) => (
+              <div key={index} className="group hover:bg-muted/30 p-4 -mx-4 rounded-lg transition-colors duration-200">
+                <div className="flex justify-between items-baseline mb-2">
+                  <h3 className="font-semibold text-foreground text-lg group-hover:text-primary transition-colors">{job.company}</h3>
+                  <span className="font-mono text-sm text-muted-foreground">{job.period}</span>
+                </div>
+                <p className="text-md text-primary mb-3 font-medium">{job.role}</p>
+                {Array.isArray(job.description) ? (
+                  <ul className="list-disc list-outside ml-5 space-y-1 text-muted-foreground text-sm leading-relaxed">
+                    {job.description.map((desc, i) => (
+                      <li key={i}>{desc}</li>
+                    ))}
+                  </ul>
+                ) : (
+                  <p className="text-sm text-muted-foreground">{job.description}</p>
+                )}
               </div>
-              <p className="text-md text-primary mb-3 font-medium">Data Engineer and Data Analyst Intern</p>
-              <ul className="list-disc list-outside ml-5 space-y-1 text-muted-foreground text-sm leading-relaxed">
-                <li>Designed and deployed data workflows that streamlined ingestion and transformation, ensuring consistent, timely delivery of analytics insights while coordinating with team members.</li>
-                <li>Applied critical thinking to identify and resolve data quality issues, improving trust in the analytics outputs.</li>
-              </ul>
-            </div>
-
-            {/* Boundless Rider */}
-            <div className="group hover:bg-muted/30 p-4 -mx-4 rounded-lg transition-colors duration-200">
-              <div className="flex justify-between items-baseline mb-2">
-                <h3 className="font-semibold text-foreground text-lg group-hover:text-primary transition-colors">Boundless Rider</h3>
-                <span className="font-mono text-sm text-muted-foreground">Nov 2023 – Oct 2024</span>
-              </div>
-              <p className="text-md text-primary mb-3 font-medium">Software Developer</p>
-              <ul className="list-disc list-outside ml-5 space-y-1 text-muted-foreground text-sm leading-relaxed">
-                <li>Developed and deployed mobile features in React Native, improving user engagement while collaborating closely with cross-functional teams.</li>
-                <li>Built and optimized backend APIs, reducing response time by 20% through analytical problem-solving and attention to detail.</li>
-                <li>Supported production systems with 99% uptime, handling bug fixes and hotpatches under release deadlines.</li>
-              </ul>
-            </div>
+            ))}
 
             {/* Internships Grouped */}
-            <div className="p-4 -mx-4">
-               <h3 className="font-semibold text-foreground text-lg mb-6 flex items-center gap-2">
-                  Previous Internships <span className="h-px bg-border flex-1 opacity-50"></span>
-               </h3>
-               <div className="space-y-8 relative border-l border-border/50 ml-2 pl-6">
-                  {/* Safran */}
-                  <div className="relative">
-                    <span className="absolute -left-[29px] top-1.5 h-2 w-2 rounded-full bg-border ring-4 ring-background"></span>
-                    <div className="flex justify-between items-baseline mb-1">
-                       <h4 className="font-medium text-foreground hover:text-primary transition-colors">Safran Electrical & Power</h4>
-                       <span className="font-mono text-xs text-muted-foreground">Apr – Oct 2021</span>
-                    </div>
-                    <p className="text-sm text-muted-foreground italic mb-1">Embedded Systems Engineer Intern</p>
-                    <p className="text-sm text-muted-foreground">Developed a computer vision–based load handling system for the H160 station, automating a previously manual process. Integrated AI-based object detection with embedded hardware, reducing operator intervention and improving handling accuracy.</p>
-                  </div>
-
-                  {/* AutoHall */}
-                  <div className="relative">
-                    <span className="absolute -left-[29px] top-1.5 h-2 w-2 rounded-full bg-border ring-4 ring-background"></span>
-                    <div className="flex justify-between items-baseline mb-1">
-                       <h4 className="font-medium text-foreground hover:text-primary transition-colors">AutoHall</h4>
-                       <span className="font-mono text-xs text-muted-foreground">Apr – Jun 2019</span>
-                    </div>
-                     <p className="text-sm text-muted-foreground italic mb-1">Automotive Engineer Intern</p>
-                     <p className="text-sm text-muted-foreground">Conducted technical study of particle filters and supported vehicle diagnostics and maintenance.</p>
-                  </div>
-
-                  {/* ONCF */}
-                  <div className="relative">
-                    <span className="absolute -left-[29px] top-1.5 h-2 w-2 rounded-full bg-border ring-4 ring-background"></span>
-                    <div className="flex justify-between items-baseline mb-1">
-                       <h4 className="font-medium text-foreground hover:text-primary transition-colors">ONCF</h4>
-                       <span className="font-mono text-xs text-muted-foreground">Apr – Jun 2018</span>
-                    </div>
-                    <p className="text-sm text-muted-foreground italic mb-1">Electrical Engineer Intern</p>
-                     <p className="text-sm text-muted-foreground">Designed an alarm system against motor overheating in E-1100 locomotives and supported diagnostics and maintenance of electric motors.</p>
-                  </div>
-               </div>
-            </div>
+            {internships.length > 0 && (
+              <div className="p-4 -mx-4">
+                 <h3 className="font-semibold text-foreground text-lg mb-6 flex items-center gap-2">
+                    Previous Internships <span className="h-px bg-border flex-1 opacity-50"></span>
+                 </h3>
+                 <div className="space-y-8 relative border-l border-border/50 ml-2 pl-6">
+                    {internships.map((internship, index) => (
+                      <div key={index} className="relative">
+                        <span className="absolute -left-[29px] top-1.5 h-2 w-2 rounded-full bg-border ring-4 ring-background"></span>
+                        <div className="flex justify-between items-baseline mb-1">
+                           <h4 className="font-medium text-foreground hover:text-primary transition-colors">{internship.company}</h4>
+                           <span className="font-mono text-xs text-muted-foreground">{internship.period}</span>
+                        </div>
+                        <p className="text-sm text-muted-foreground italic mb-1">{internship.role}</p>
+                        {Array.isArray(internship.description) ? (
+                          <ul className="list-disc list-outside ml-5 space-y-1 text-muted-foreground text-sm leading-relaxed">
+                            {internship.description.map((desc, i) => (
+                              <li key={i}>{desc}</li>
+                            ))}
+                          </ul>
+                        ) : (
+                           <p className="text-sm text-muted-foreground">{internship.description}</p>
+                        )}
+                      </div>
+                    ))}
+                 </div>
+              </div>
+            )}
         </div>
       </section>
 
