@@ -1,5 +1,24 @@
 [
   {
+    "company": "DXC Technology",
+    "period": "Feb 2026 – Present",
+    "role": "Data Engineer",
+    "type": "job",
+    "description": [""]
+  },
+  {
+    "company": "Lysi Consulting",
+    "period": "Nov 2025 – Feb 2026",
+    "role": "Data Integration Specialist",
+    "type": "job",
+    "description": [
+      "EDI Integration: Managed and optimized EDI (Electronic Data Interchange) flows for seamless B2B data exchange with partners and suppliers.",
+      "Data Quality Assurance: Established validation rules and monitoring processes to ensure data accuracy, completeness, and consistency across all integrated systems.",
+      "Business Intelligence: Collaborated with stakeholders to understand data requirements.",
+      "Requirements Analysis: Gathered and analyzed business requirements from stakeholders to identify data integration needs and opportunities."
+    ]
+  },
+  {
     "company": "Arkx Academy (Jobintech)",
     "period": "Jul 2025 – Dec 2025",
     "role": "Data Engineer and Data Analyst Intern",
